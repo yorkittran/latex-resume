@@ -1,0 +1,312 @@
+%-------------------------
+% Rezume, a latex resume template for developers
+% Author : Nanu Panchamurthy
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+
+% Hope this resume template helps you land an awesome job. If you found this helpful, please consider starring the github repo here, .
+%-------------------------
+
+
+
+%------------PACKAGES----------------
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{verbatim} % reimplements the "verbatim" and "verbatim*" environments
+
+\usepackage{titlesec} % provides an interface to sectioning commands i.e. custom elements
+
+\usepackage{color} % provides both foreground and background color management
+
+\usepackage[svgnames,x11names,table]{xcolor}
+
+\usepackage{enumitem} % provides control over enumerate, itemize and description
+
+\usepackage{fancyhdr} % provides extensive facilities for constructing headers, footers and also controlling their use
+
+\usepackage{tabularx} % defines an environment tabularx, extension of "tabular" with an extra designator x, paragraph like column whose width automatically expands to fill the width of the environment
+
+\usepackage{latexsym} % provides mathematical symbols
+
+\usepackage{marvosym} % provides martin vogel's symbol font which contains various symbols
+
+\usepackage[empty]{fullpage} % sets margins to one inch and removes headers, footers etc..
+
+\usepackage[colorlinks = true, linkcolor = MidnightBlue, urlcolor = MidnightBlue, citecolor = MidnightBlue, anchorcolor = MidnightBlue]{hyperref}
+
+\usepackage[normalem]{ulem} % provides "\ul" (uline) command which will break at line breaks
+
+\usepackage[english]{babel} % provides culturally determined typographical rules for wide range of languages
+
+%-----------------------------------------
+
+\input glyphtounicode % converts glyph names to unicode
+\pdfgentounicode=1 % ensures pdfs generated are ats readable
+
+%----------FONT OPTIONS-------------------
+\usepackage[OT1]{fontenc}
+%-----------------------------------------
+
+%----------MARGIN OPTIONS-----------------
+\pagestyle{fancy} % set page style to one configured by fancyhdr
+\fancyhf{} % clear all header and footer fields
+
+\renewcommand{\headrulewidth}{0in} % sets thickness of linerule under header to zero
+\renewcommand{\footrulewidth}{0in} % sets thickness of linerule over footer to zero
+
+\setlength{\tabcolsep}{0in} % sets thickness of column separator in tables to zero
+
+% origin of the document is one inch from the top and from and the left
+% oddsidemargin and evensidemargin both refer to the left margin
+% right margin is indirectly set using oddsidemargin
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\topmargin}{-0.5in}
+
+\addtolength{\textwidth}{1.0in} % sets width of text area in the page to one inch
+\addtolength{\textheight}{1.0in} % sets height of text area in the page to one inch
+
+\raggedbottom{} % makes all pages the height of current page, no extra vertical space added
+\raggedright{} % makes all pages the width of current page, no extra horizontal space added
+%------------------------------------------
+
+
+%--------SECTIONING COMMANDS---------
+% \titleformat{<command>}
+%   [<shape>]{<format>}{<label>}{<sep>}
+%     {<before-code>}[<after-code>]
+
+% command is the sectioning command to be redefined
+% shape is the style of the font; scshape stands for small caps style
+% format is the format to be applied to whole title- label and text; absent here
+% label defines the label
+% sep is the horizontal separation between label and title body
+% before-code is the code to be executed before
+% after-code is the code to be executed after
+
+\titleformat{\section}
+  {\scshape\large}{}
+    {0em}{\color{black}}[\color{black}\titlerule\vspace{0pt}]
+%-------------------------------------
+
+
+%--------REDEFINITIONS----------------
+% redefines the style of the bullet point
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% redefines the underline depth to 2pt
+\renewcommand{\ULdepth}{2pt}
+%-------------------------------------
+
+
+%--------CUSTOM COMMANDS--------------
+%\vspace{} defines a vertical space of given size, modifying this in custom commands can help stretch or shrink resume to remove or add content
+
+% resumeItem renders a bullet point
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
+}
+
+% commands to start and end itemization of resumeItem, rightmargin set to 0.11in to avoid the overflow of resumetItem beyond whatever resumeItemHeading is being used
+\newcommand{\resumeItemListStart}{\begin{itemize}[rightmargin=0.11in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% resumeSectionType renders a bolded type to be used under a section, used as skill type here, middle element is used to keep ":"s in the same vertical line
+\newcommand{\resumeSectionType}[3]{
+  \item\begin{tabular*}{0.96\textwidth}[t]{
+    p{0.25\linewidth}p{0.02\linewidth}p{0.81\linewidth}
+  }
+    \textbf{#1} & #2 & #3
+  \end{tabular*}\vspace{-2pt}
+}
+
+% resumeTrioHeading renders three elements in three columns with second element being italicized and first element bolded, can be used for projects with three elements
+\newcommand{\resumeTrioHeading}[3]{
+  \item\small{
+    \begin{tabular*}{0.96\textwidth}[t]{
+      l@{\extracolsep{\fill}}c@{\extracolsep{\fill}}r
+    }
+      \textbf{#1} & \textit{#2} & \textit{#3}
+      \smallskip
+    \end{tabular*}
+  }
+}
+
+% resumeQuadHeading renders four elements in a two columns with the second row being italicized and first element of first row bolded, can be used for experience and projects with four elements
+\newcommand{\resumeQuadHeading}[4]{
+  \item
+  \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{\normalsize#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4}
+    \smallskip
+  \end{tabular*}
+}
+
+% commands to start and end itemization of resumeQuadHeading, lefmargin for left indent of 0.15in for resumeItems
+\newcommand{\resumeHeadingListStart}{
+  \begin{itemize}[leftmargin=0.15in, label={}]
+}
+\newcommand{\resumeHeadingListEnd}{\end{itemize}}
+%-------------------------------------------
+
+
+%__________________RESUME____________________
+% You can rearrange sections in any order you may prefer
+\begin{document}
+
+%-----------CONTACT DETAILS------------------
+% Make sure all the details are correct, you can add more links in the first row of second column if needed
+
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\Huge Anh Tran \vspace{2pt}} & % row = 1, col = 1
+  Location: District 7, HCMC \\ % row = 1, col = 2
+  \href{https://yorkittran.github.io}{\uline{yorkittran.github.io}} $|$ % row = 2, col = 1
+  \href{https://linkedin.com/in/yorkittran}{\uline{LinkedIn}} $|$ % row = 2, col = 1
+  \href{https://github.com/yorkittran}{\uline{GitHub}} & % row = 2, col = 1
+  Email: \href{mailto:yorkittran@gmail.com}{\uline{yorkittran@gmail.com}} $|$ % row = 2, col = 2
+  Mobile: +84 366 08 2301 \\ % row = 2, col = 2
+\end{tabular*}
+%--------------------------------------------
+
+
+%-----------SUMMARY--------------------------
+% Keep this short, simple and straigth to point
+
+\section{Summary}
+\small{
+  I am interested in building and improving software systems. I’m now looking for opportunities to work in a high growth and challenging environment with a strong emphasis on engineering effort.
+\resumeItemListStart{}
+  \resumeItem{2 years of experience in developing application.}
+  \resumeItem{Full stack web developer, with a focus on back-end systems and services.}
+\resumeItemListEnd{}
+}
+%--------------------------------------------
+
+
+%--------------SKILLS------------------------
+% Add or remove resumeSectionTypes according to your needs
+
+\section{Technical Skills}
+  \resumeHeadingListStart{}
+    \resumeSectionType{Languages}{:}{Ruby, JavaScript}
+    \resumeSectionType{Frameworks/Libraries}{:}{Ruby on Rails, Hotwire, NodeJS, VueJS, Express, NestJS}
+    \resumeSectionType{Databases}{:}{MySQL, MongoDB}
+    \resumeSectionType{Dev Tools}{:}{Visual Studio Code, Git, Github}
+  \resumeHeadingListEnd{}
+%--------------------------------------------
+
+
+%-----------EXPERIENCE-----------------------
+% Distill all your talking points to small bullet points which follow the pattern "challenge-action-result" for maximum efficiency. Try to quantify (use numbers) your points whenver possible, highlist words of importance
+
+\section{Experience}
+\resumeHeadingListStart{}
+  % CodeLink
+  \resumeQuadHeading{\href{https://codelink.io}{CodeLink}}{HCMC}
+  {Full Stack Developer}{Oct 2022 -- Feb 2023}
+  \small{CodeLink is a multinational development consultancy. We approach product development through design thinking methodologies and strategies to rapidly develop digital products and platforms following a disciplined agile process.}
+    \resumeHeadingListStart{}
+      \resumeTrioHeading{\href{https://baonoi.ai/}{Baonoi}}{}{NodeJS, Flutter, ReactJS, Python, Firebase, PostgreSQL}
+      \small{Baonoi is an audio news application that convert from many famous online news in Vietnam. Although still in beta phase, it has around 1000 users using everyday.}
+        \resumeItemListStart{}    
+          \resumeItem{I focused on APIs, transformed Firebase to PostgreSQL, and implemented some small features on mobile such as changing password, pulling to reload.}
+          \resumeItem{Team size: 8}
+        \resumeItemListEnd{}
+    \resumeHeadingListEnd{}
+  \smallskip
+
+  % Raksul
+  \resumeQuadHeading{\href{https://recruit-vn.raksul.com}{Raksul Vietnam}}{HCMC}
+  {Backend Engineer}{Aug 2020 -- Oct 2022}
+  \small{Raksul is a fabless B2B platform builder. We aims to change the world by reinventing legacy industry structures with the power of the Internet.}
+    \resumeHeadingListStart{}
+      % Novelty
+      \resumeTrioHeading{\href{https://novelty.raksul.com/}{Novelty}}{}{Ruby on Rails, VueJS, MySQL, GraphQL}
+      \small{Novelty is a successfully e-commerce application in Japan. We selling merchandises and allow user to put their own print into their buying product. We also support partner which is material supplier to keep track on the orders.}
+        \resumeItemListStart{}    
+          \resumeItem{I was responsible for the development and maintenance of many features, such as building files and send to partner for tracking orders, improving performance of requests, building 3D preview for the products, etc.}
+          \resumeItem{Team size: 10}
+        \resumeItemListEnd{}
+
+      % Cutting cost with Lambda
+      \resumeTrioHeading{Cutting cost with Lambda - Hackweek Edition}{}{NodeJS, Ruby on Rails, AWS}
+      \small{Cutting cost with Lambda is a prototype that we made for reduce cost from Workers on ECs by transform to Lambda functions}
+        \resumeItemListStart{}    
+          \resumeItem{We built the prototype in 3 days that processing and previewing images through Lambda functions instead of Workers running on ECs. I transformed logic from back-end to Lambda functions, and handled to redirect to API Gateway. }
+          \resumeItem{As calculation, we saved about 2000\$/month for the company if it successfully applied on other products. Therefore, we won the 1st prize of Effective Award in Hackweek competition with held once a year by Raksul Headquarter.}
+          \resumeItem{Worked with many services on AWS: Lambda, API Gateway, SNS}
+          \resumeItem{Team size: 3}
+        \resumeItemListEnd{}
+
+      % Digital Product
+      \resumeTrioHeading{Digital Product}{}{NodeJS, MySQL, AWS}
+      \small{Digital Product is an application that allowed venue/ads owners to create QR codes and assign it to banner ads. Then it will be delivered to many different location and the owners can track the effectiveness of them.}
+        \resumeItemListStart{}    
+          \resumeItem{I built the prototype alone in 4 weeks using many AWS to create a serverless application. After 6 months of testing, it proved successfully and was integrated into a bigger product.}
+          \resumeItem{Worked with many services on AWS: Lambda, RDS, S3, API Gateway, SAM}
+          \resumeItem{Team size: 2}
+        \resumeItemListEnd{}
+
+      % Advertised Marketing
+      \resumeTrioHeading{\href{https://am.raksul.com/}{Advertised Marketing}}{}{Ruby on Rails, VueJS, MySQL, GraphQL, Google APIs}
+      \small{Advertised Marketing is a project that allows user to create their orders of newspaper or advertised flyers, then support user to pick an area directly on the map to deliver them to customers via mailbox.}
+        \resumeItemListStart{}    
+          \resumeItem{I was responsible for developing operation part. This one help internal users in company to keep track on user orders. I focused on tracking order statuses, managing file that user upload, viewing comment of other internal users.}
+          \resumeItem{Team size: 8}
+        \resumeItemListEnd{}
+
+      % PRO
+      \resumeTrioHeading{\href{https://pro.raksul.com/}{PRO}}{}{Ruby on Rails, VueJS, Python, MySQL}
+      \small{PRO is a special e-commerce application. It mostly focuses on specific customers instead of normal users, which is a business partner companies. Customers will have a preferential price as large amount as the orders.}
+        \resumeItemListStart{}    
+          \resumeItem{I was responsible for the development and operation of the application. Beside implementing features on back-end, I also have a chance to learn VueJS by helping create components and pages on front-end side, such as price table, cart pages, etc. By using Python, we also create a crawler to make a comparison prices between competing company's products and ours.}
+          \resumeItem{Team size: 4}
+        \resumeItemListEnd{}
+    \resumeHeadingListEnd{}
+  \smallskip
+
+  % Act Brain
+  \resumeQuadHeading{\href{https://actbrain-vn.com}{Act Brain Vietnam Corporation}}{HCMC}
+  {Backend Engineer Intern}{Sep 2019 -- Mar 2020}
+  \small{Act Brain is the consultants, provide solutions and develop leading software systems in Japan. We have a young and enthusiastic staff, with creativity and professional qualifications.}
+    \resumeHeadingListStart{}
+      \resumeTrioHeading{BPO Shinjin}{}{PHP, Zend Framework, MySQL}
+      \small{BPO Shinjin is an internal product for managing employees by tracking time sheet, build monthly quizzes.}
+        \resumeItemListStart{}    
+          \resumeItem{I built and maintained creating quizzes feature and covered test cases.}
+          \resumeItem{Team size: 10+}
+        \resumeItemListEnd{}
+    \resumeHeadingListEnd{}
+\resumeHeadingListEnd{}
+%---------------------------------------------
+
+
+%-----------EDUCATION-------------------------
+% Mention your CGPA, if its good, in the first row of second column
+
+\section{Education}
+  \resumeHeadingListStart{}
+    \resumeQuadHeading{FPT University}{HCMC}
+    {Bachelor of Software Engineering with Scholarship}{Sep 2017 -- Jan 2021}
+    \resumeQuadHeading{Le Quy Don Gifted High School}{Da Nang}
+    {Information \& Technology Specialized Class}{Sep 2014 -- May 2017}
+  \resumeHeadingListEnd{}
+%---------------------------------------------
+
+
+%-----------PROJECTS--------------------------
+% Use resumeQuadHeading if four elements are feasible (ex: demo video link), else use resumeTrioHeading. Keep the bullet points simple and concise and try to cover wide variety of skills you have used to build these projects
+
+\section{Projects}
+  \resumeHeadingListStart{}
+    \resumeTrioHeading{\href{https://github.com/quizk}{Quizk}}{}{Ruby on Rails, VueJS, Hotwire, MySQL, DigitalOcean}
+    \small{Quizk is a quiz system for University of Medical and Pharmacy in HCMC to operates a internal competition.}
+      \resumeItemListStart{}
+        \resumeItem{I was responsible for the development and operation of the application. After 2 months of developing, we success to run it in 3 weeks for serving about 3000 new students in university.}
+        \resumeItem{I built the application using Ruby on Rails to create operation site and APIs, designed whole system included database and architecture. Also tried to deploy application to DigitalOcean}
+        \resumeItem{Team size: 2}
+      \resumeItemListEnd{}
+  \resumeHeadingListEnd{}
+%--------------------------------------------
+
+
+\end{document}
